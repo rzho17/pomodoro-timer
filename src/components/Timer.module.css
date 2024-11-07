@@ -1,0 +1,43 @@
+@import "../App.css";
+
+.timerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timerOptions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.timerOptions button {
+  font-size: clamp(0.8rem, 2vw, 3rem);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+}
+
+.timerMain {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.timerMain h2 {
+  /* font-size: 5rem; */
+  font-size: clamp(6rem, 10vw, 20vw);
+}
+
+.timerMain svg {
+  width: 2rem;
+  height: auto;
+}
+
+.timerBar {
+  height: 1rem;
+  width: 100%;
+  background-color: var(--primary-color);
+}
