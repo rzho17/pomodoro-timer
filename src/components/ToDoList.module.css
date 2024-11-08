@@ -1,0 +1,46 @@
+@import "../App.css";
+
+.toDoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.toDoItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  max-height: 200px;
+  gap: 1rem;
+  padding: 0 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  overflow: scroll;
+}
+
+.toDoEntry {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem 0;
+
+  gap: 1rem;
+
+  border-bottom: 1px solid;
+}
+
+.toDoEntry svg {
+  width: 1.5rem;
+  height: auto;
+}
+
+.toDoEntry div {
+  display: flex;
+  gap: 0.5rem;
+}

@@ -1,6 +1,8 @@
 import Button from "./Button";
 import styles from "./Timer.module.css";
 import { SlOptions } from "react-icons/sl";
+import { MdOutlineRestartAlt } from "react-icons/md";
+import { VscDebugStart } from "react-icons/vsc";
 
 export default function Timer() {
   return (
@@ -15,9 +17,12 @@ export default function Timer() {
         <SlOptions />
       </div>
       <div className={styles.timerBar}></div>
-      <div className="timerControls">
-        <Button text={"play"} />
-        <Button text={"restart"} />
+      <div className={styles.timerControls}>
+        {/* <Button text={"start"} /> */}
+        <VscDebugStart />
+
+        {/* <Button text={"restart"} /> */}
+        <MdOutlineRestartAlt />
       </div>
     </div>
   );
