@@ -1,4 +1,9 @@
 :root {
+  /* --root-background-image: url("forest-image.jpg"); */
+  --root-background-image: url("../public/assets/forest.jpg");
+}
+
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -6,6 +11,12 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+
+  background: var(--root-background-image) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -14,4 +14,29 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+
+  padding: 2rem 1rem;
+  border: 1px solid;
+  border-radius: 20px;
+}
+
+.menuContent h3 {
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+.menuOptions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menuSettings {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuContent img {
+  width: 100%;
 }

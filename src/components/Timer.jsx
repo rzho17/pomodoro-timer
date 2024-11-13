@@ -8,7 +8,7 @@ import { VscDebugStart } from "react-icons/vsc";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
-export default function Timer() {
+export default function Timer({ changeBackground }) {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -25,7 +25,11 @@ export default function Timer() {
         <h2>25:00</h2>
 
         <SlOptions onClick={toggleMenu} />
-        {showMenu && createPortal(<Menu close={toggleMenu} />, document.body)}
+        {showMenu &&
+          createPortal(
+            <Menu close={toggleMenu} changeBackground={changeBackground} />,
+            document.body
+          )}
       </div>
       <div className={styles.timerBar}></div>
       <div className={styles.timerControls}>

@@ -2,10 +2,10 @@ import Timer from "../components/Timer";
 import ToDoList from "../components/ToDoList";
 import styles from "./Main.module.css";
 
-const Main = () => {
+const Main = ({ changeBackground }) => {
   return (
     <main className={styles.main}>
-      <Timer />
+      <Timer changeBackground={changeBackground} />
       <ToDoList />
     </main>
   );
