@@ -4,34 +4,58 @@ import styles from "./Menu.module.css";
 export default function Menu({ close, changeBackground }) {
   const backgroundImages = [
     {
-      url: "beachwaves",
-      description: "waves on a beach",
+      url: "gates",
+      description: "shrine gates on water",
+      name: "Gates",
+    },
+    {
+      url: "shrine",
+      description: "temple shrine in spring",
+      name: "Spring Shrine",
     },
     {
       url: "eveningboats",
       description: "mini boats in japan during sunset",
+      name: "Cherry Blossom",
     },
     {
       url: "forest",
       description: "forest road with sun shining down on it",
+      name: "Forest Calm",
     },
     {
       url: "nightcity",
       description: "city skyline at night",
+      name: "Cityscape",
     },
     {
       url: "northern",
       description: "northern lights on winter night",
+      name: "Northern Lights",
     },
     {
       url: "winter",
       description: "winter snow on asian style building",
+      name: "Winter Bliss",
+    },
+    {
+      url: "water",
+      description: "ocean waves during sunset",
+      name: "Ocean Sunset",
     },
   ];
 
+  const [smallImg, setSmallImg] = useState(["gates", ""]);
   const [showTimers, setShowTimers] = useState(true);
   const [showThemes, setShowThemes] = useState(false);
   const [showSounds, setShowSounds] = useState(false);
+
+  const updateImg = (data) => {
+    const selectedIndex = data;
+    const img = backgroundImages[selectedIndex];
+    changeBackground(img.url);
+    setSmallImg([img.url, img.description]);
+  };
 
   return (
     <>
@@ -56,23 +80,22 @@ export default function Menu({ close, changeBackground }) {
           <select
             name="backgroundImg"
             id=""
-            onChange={(e) => changeBackground(e.target.value)}
+            onChange={(e) => updateImg(e.target.selectedIndex)}
           >
             {backgroundImages.map((item) => {
               return (
-                <option key={item.url} value={item.url}>
-                  {item.url}
+                <option key={item.url} value={item}>
+                  {item.name}
                 </option>
               );
             })}
           </select>
 
-          <button onClick={() => changeBackground("forest")}>
-            change the background
-          </button>
-
           <div>
-            <img src="../public/assets/beachwaves.jpg" alt="" />
+            <img
+              src={`../public/assets/${smallImg[0]}.jpg`}
+              alt={smallImg[1]}
+            />
           </div>
         </div>
 

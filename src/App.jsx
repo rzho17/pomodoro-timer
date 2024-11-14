@@ -7,7 +7,7 @@ import Footer from "./pageContent/Footer";
 import "./App.css";
 
 function App() {
-  const [background, setBackground] = useState("eveningboats");
+  const [background, setBackground] = useState("gates");
 
   const changeBackground = (image) => setBackground(image);
 

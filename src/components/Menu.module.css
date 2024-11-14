@@ -18,6 +18,7 @@
   padding: 2rem 1rem;
   border: 1px solid;
   border-radius: 20px;
+  backdrop-filter: blur(10px);
 }
 
 .menuContent h3 {
@@ -38,5 +39,20 @@
 }
 
 .menuContent img {
+  margin-top: 1rem;
   width: 100%;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  max-width: 350px;
+}
+
+.menuContent input,
+.menuContent select {
+  font-size: 1rem;
+  background-color: transparent;
+  padding: 0.5rem;
+
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
 }
