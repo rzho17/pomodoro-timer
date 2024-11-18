@@ -1,6 +1,7 @@
 import Button from "./Button";
 import styles from "./Timer.module.css";
 import Menu from "./Menu";
+import CountdownTimer from "./CountdownTimer";
 
 import { SlOptions } from "react-icons/sl";
 import { MdOutlineRestartAlt } from "react-icons/md";
@@ -22,7 +23,8 @@ export default function Timer({ changeBackground }) {
         <Button text={"long break"} />
       </div>
       <div className={styles.timerMain}>
-        <h2>25:00</h2>
+        {/* <h2>25:00</h2> */}
+        {/* <CountdownTimer time={43.1 * 60} /> */}
 
         <SlOptions onClick={toggleMenu} />
         {showMenu &&

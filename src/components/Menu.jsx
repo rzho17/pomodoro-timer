@@ -2,11 +2,27 @@ import { useState } from "react";
 import styles from "./Menu.module.css";
 
 export default function Menu({ close, changeBackground }) {
+  const sound = new Audio("../public/assets/sounds/jingle1.mp3");
+
+  const [volume, setVolume] = useState(sound.volume);
+  sound.volume = volume;
+
+  const play = () => {
+    sound.play();
+  };
+
+  const changeVolume = (e) => {
+    console.log(e);
+    const intSound = parseInt(e);
+
+    setVolume(intSound / 100);
+  };
+
   const backgroundImages = [
     {
       url: "gates",
       description: "shrine gates on water",
-      name: "Gates",
+      name: "Torii Gate",
     },
     {
       url: "shrine",
@@ -97,6 +113,18 @@ export default function Menu({ close, changeBackground }) {
               alt={smallImg[1]}
             />
           </div>
+        </div>
+
+        <div className={styles.menuSettings}>
+          <select name="sounds" id="">
+            <option value="dingding">Ding Ding</option>
+            <option value="jingle1">Jingle 1</option>
+            <option value="jingle2">Jingle 2</option>
+            <option value="jingle3">Jingle 3</option>
+          </select>
+
+          <button onClick={play}>Test</button>
+          <input type="range" onChange={(e) => changeVolume(e.target.value)} />
         </div>
 
         <button onClick={close}>Close</button>
