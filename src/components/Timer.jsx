@@ -16,17 +16,24 @@ export default function Timer({ changeBackground }) {
   const [longBreak, setLongBreak] = useState(0.08);
   const [count, setCount] = useState(0);
 
-  const [timeFinished, setTimeFinished] = useState(false);
-
-  const checkTime = (time) => {
+  const checkTime = () => {
     if (count >= pomodoroInterval.length - 1) {
       setCount(0);
     } else {
       setCount(count + 1);
     }
+
+    changePause();
     console.log("count increased");
     console.log(count);
     console.log(pomodoroInterval[count]);
+  };
+
+  const reset = () => {
+    setCount(0);
+
+    setShortBreak(shortBreak + 0.00001);
+    setLongBreak(longBreak + 0.00001);
   };
 
   const pomodoroInterval = [
@@ -40,8 +47,34 @@ export default function Timer({ changeBackground }) {
     longBreak,
   ];
 
-  const [active, setActive] = useState(true);
+  const [pomoActive, setPomoActive] = useState(true);
+  const [shortActive, setShortActive] = useState(false);
+  const [longActive, setLongActive] = useState(false);
 
+  const changePomo = () => {
+    setShortActive(false);
+    setPomoActive(true);
+    setLongActive(false);
+
+    setActive(true);
+  };
+
+  const changeShort = () => {
+    setShortActive(true);
+    setPomoActive(false);
+    setLongActive(false);
+
+    setActive(true);
+  };
+  const changeLong = () => {
+    setShortActive(false);
+    setPomoActive(false);
+    setLongActive(true);
+
+    setActive(true);
+  };
+
+  const [active, setActive] = useState(true);
   const changePause = () => {
     setActive(!active);
   };
@@ -54,19 +87,36 @@ export default function Timer({ changeBackground }) {
   return (
     <div className={styles.timerSection}>
       <div className={styles.timerOptions}>
-        <Button text={"pomodoro"} />
-        <Button text={"short break"} />
-        <Button text={"long break"} />
+        <Button text={"pomodoro"} func={changePomo} />
+        <Button text={"short break"} func={changeShort} />
+        <Button text={"long break"} func={changeLong} />
       </div>
       <div className={styles.timerMain}>
         {/* <h2>25:00</h2> */}
 
-        <CountdownTimer
-          key={count}
-          time={pomodoroInterval[count] * 60}
-          pause={active}
-          checkTime={checkTime}
-        />
+        {pomoActive ? (
+          <CountdownTimer
+            key={count}
+            time={pomodoroInterval[count] * 60}
+            pause={active}
+            checkTime={checkTime}
+          />
+        ) : null}
+
+        {shortActive ? (
+          <CountdownTimer
+            time={shortBreak * 60}
+            pause={active}
+            checkTime={checkTime}
+          />
+        ) : null}
+        {longActive ? (
+          <CountdownTimer
+            time={longBreak * 60}
+            pause={active}
+            checkTime={checkTime}
+          />
+        ) : null}
 
         <SlOptions onClick={toggleMenu} />
         {showMenu &&
@@ -83,7 +133,7 @@ export default function Timer({ changeBackground }) {
           <SlControlPause onClick={changePause} />
         )}
 
-        <MdOutlineRestartAlt />
+        <MdOutlineRestartAlt onClick={reset} />
       </div>
     </div>
   );
