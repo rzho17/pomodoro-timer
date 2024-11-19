@@ -6,10 +6,46 @@ import CountdownTimer from "./CountdownTimer";
 import { SlOptions } from "react-icons/sl";
 import { MdOutlineRestartAlt } from "react-icons/md";
 import { VscDebugStart } from "react-icons/vsc";
-import { useState } from "react";
+import { SlControlPause } from "react-icons/sl";
+import { act, useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 
 export default function Timer({ changeBackground }) {
+  const [time, setTime] = useState(0.02);
+  const [shortBreak, setShortBreak] = useState(0.04);
+  const [longBreak, setLongBreak] = useState(0.08);
+  const [count, setCount] = useState(0);
+
+  const [timeFinished, setTimeFinished] = useState(false);
+
+  const checkTime = (time) => {
+    if (count >= pomodoroInterval.length - 1) {
+      setCount(0);
+    } else {
+      setCount(count + 1);
+    }
+    console.log("count increased");
+    console.log(count);
+    console.log(pomodoroInterval[count]);
+  };
+
+  const pomodoroInterval = [
+    time,
+    shortBreak,
+    time,
+    shortBreak,
+    time,
+    shortBreak,
+    time,
+    longBreak,
+  ];
+
+  const [active, setActive] = useState(true);
+
+  const changePause = () => {
+    setActive(!active);
+  };
+
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -24,7 +60,13 @@ export default function Timer({ changeBackground }) {
       </div>
       <div className={styles.timerMain}>
         {/* <h2>25:00</h2> */}
-        {/* <CountdownTimer time={43.1 * 60} /> */}
+
+        <CountdownTimer
+          key={count}
+          time={pomodoroInterval[count] * 60}
+          pause={active}
+          checkTime={checkTime}
+        />
 
         <SlOptions onClick={toggleMenu} />
         {showMenu &&
@@ -35,10 +77,12 @@ export default function Timer({ changeBackground }) {
       </div>
       <div className={styles.timerBar}></div>
       <div className={styles.timerControls}>
-        {/* <Button text={"start"} /> */}
-        <VscDebugStart />
+        {active ? (
+          <VscDebugStart onClick={changePause} />
+        ) : (
+          <SlControlPause onClick={changePause} />
+        )}
 
-        {/* <Button text={"restart"} /> */}
         <MdOutlineRestartAlt />
       </div>
     </div>
