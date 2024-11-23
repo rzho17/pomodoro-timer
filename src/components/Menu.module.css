@@ -1,3 +1,5 @@
+@import "../App.css";
+
 .menuOverlay {
   position: fixed;
   top: 0;
@@ -19,6 +21,9 @@
   border: 1px solid;
   border-radius: 20px;
   backdrop-filter: blur(10px);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .menuContent h3 {
@@ -47,6 +52,15 @@
   max-width: 350px;
 }
 
+.menuTimerContainer label {
+  font-weight: 600;
+  font-size: 1.2;
+  margin: 1rem 0;
+}
+
+.menuTimerContainer label:nth-child(1) {
+  margin: 0 0 1rem 0;
+}
 .menuContent input,
 .menuContent select {
   font-size: 1rem;
@@ -55,4 +69,66 @@
 
   border-radius: 10px;
   border: 1px solid var(--primary-color);
+}
+
+.menuTimerContainer,
+.menuThemesContainer,
+.menuSoundsContainer {
+  display: flex;
+  flex-direction: column;
+
+  margin: 2rem 0;
+}
+
+.menuSoundsContainer div {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.menuSoundsContainer input {
+  padding: 0;
+  margin: 1.5rem 0;
+  /* appearance: none; */
+  accent-color: white;
+  outline: none;
+  border-radius: 12px;
+}
+
+.menuSoundsContainer input::-webkit-slider-thumb {
+  /* appearance: none; */
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background: white;
+  border: 5px solid red;
+  cursor: pointer;
+}
+.menuSoundsContainer svg {
+  width: 2.5rem;
+  height: auto;
+}
+.menuSoundsContainer select {
+  flex: 1;
+}
+
+.menuButtons {
+  align-self: center;
+  display: flex;
+  gap: 2rem;
+}
+.close,
+.save {
+  font-size: 1.2rem;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+
+  background-color: transparent;
+}
+
+.save {
+  padding: 0 2rem;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
 }

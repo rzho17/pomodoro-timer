@@ -1,23 +1,33 @@
 import { useState } from "react";
 import styles from "./Menu.module.css";
+import { VscDebugStart } from "react-icons/vsc";
 
-export default function Menu({ close, changeBackground }) {
-  const sound = new Audio("../public/assets/sounds/jingle1.mp3");
-
-  const [volume, setVolume] = useState(sound.volume);
-  sound.volume = volume;
-
-  const play = () => {
-    sound.play();
-  };
-
-  const changeVolume = (e) => {
-    console.log(e);
-    const intSound = parseInt(e);
-
-    setVolume(intSound / 100);
-  };
-
+export default function Menu({
+  close,
+  changeBackground,
+  setTimers,
+  play,
+  changeVolume,
+  setJingle,
+}) {
+  const sounds = [
+    {
+      url: "dingding.mp3",
+      name: "Ding Ding",
+    },
+    {
+      url: "jingle1.mp3",
+      name: "Jingle",
+    },
+    {
+      url: "jingle2.mp3",
+      name: "Jingle 2",
+    },
+    {
+      url: "jingle3.mp3",
+      name: "Jingle 3",
+    },
+  ];
   const backgroundImages = [
     {
       url: "gates",
@@ -52,7 +62,7 @@ export default function Menu({ close, changeBackground }) {
     {
       url: "winter",
       description: "winter snow on asian style building",
-      name: "Winter Bliss",
+      name: "Winter Night",
     },
     {
       url: "water",
@@ -66,6 +76,28 @@ export default function Menu({ close, changeBackground }) {
   const [showThemes, setShowThemes] = useState(false);
   const [showSounds, setShowSounds] = useState(false);
 
+  // const [pomoValue, setPomoValue] = useState(0);
+  // const [shortValue, setShortValue] = useState(0);
+  // const [longValue, setLongValue] = useState(0);
+
+  const changeActive = (type) => {
+    setShowTimers(type === "timer");
+    setShowThemes(type === "themes");
+    setShowSounds(type === "sounds");
+  };
+
+  const test = (e, timeObj, key) => {
+    timeObj[key] = parseFloat(e); // Dynamically update the property
+    console.log(timeObj);
+  };
+
+  // Example usage:
+  const timers = {
+    pomoValue: 25,
+    shortValue: 5,
+    longValue: 30,
+  };
+
   const updateImg = (data) => {
     const selectedIndex = data;
     const img = backgroundImages[selectedIndex];
@@ -73,26 +105,108 @@ export default function Menu({ close, changeBackground }) {
     setSmallImg([img.url, img.description]);
   };
 
+  const save = () => {
+    setTimers(timers["pomoValue"], timers["shortValue"], timers["longValue"]);
+    close();
+  };
+
   return (
     <>
       <div className={styles.menuOverlay} onClick={close}></div>
       <div className={styles.menuContent}>
         <div className={styles.menuOptions}>
-          <h3>timers</h3>
-          <h3>themes</h3>
-          <h3>sounds</h3>
+          <h3 onClick={() => changeActive("timer")}>timers</h3>
+          <h3 onClick={() => changeActive("themes")}>themes</h3>
+          <h3 onClick={() => changeActive("sounds")}>sounds</h3>
         </div>
 
         <div className={styles.menuSettings}>
-          <label htmlFor="pomodoro">pomodoro time</label>
-          <input type="number" name="pomodoro" min="1" />
-          <label htmlFor="shortBreak">short break length</label>
-          <input type="number" name="shortBreak" min="1" />
-          <label htmlFor="longBreak">long break length</label>
-          <input type="number" name="longBreak" min="1" />
+          {showTimers ? (
+            <div className={styles.menuTimerContainer}>
+              <label htmlFor="pomodoro">pomodoro time</label>
+              <input
+                type="number"
+                name="pomodoro"
+                id="pomodoro"
+                min="1"
+                onChange={(e) => test(e.target.value, timers, "pomoValue")}
+                placeholder="minutes"
+              />
+              <label htmlFor="shortBreak">short break length</label>
+              <input
+                type="number"
+                name="shortBreak"
+                id="shortBreak"
+                min="1"
+                onChange={(e) => test(e.target.value, timers, "shortValue")}
+                placeholder="minutes"
+              />
+              <label htmlFor="longBreak">long break length</label>
+              <input
+                type="number"
+                name="longBreak"
+                id="longBreak"
+                min="1"
+                onChange={(e) => test(e.target.value, timers, "longValue")}
+                placeholder="minutes"
+              />
+            </div>
+          ) : null}
+
+          {showThemes ? (
+            <div className={styles.menuThemesContainer}>
+              {" "}
+              <select
+                name="backgroundImg"
+                id=""
+                onChange={(e) => updateImg(e.target.selectedIndex)}
+              >
+                {backgroundImages.map((item) => {
+                  return (
+                    <option key={item.url} value={item}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <div>
+                <img
+                  src={`../public/assets/${smallImg[0]}.jpg`}
+                  alt={smallImg[1]}
+                />
+              </div>
+            </div>
+          ) : null}
+
+          {showSounds ? (
+            <div className={styles.menuSoundsContainer}>
+              <div>
+                <select
+                  name="sounds"
+                  id=""
+                  onChange={(e) => setJingle(e.target.value)}
+                >
+                  {sounds.map((item) => {
+                    return (
+                      <option key={item.url} value={item.url}>
+                        {item.name}
+                      </option>
+                    );
+                  })}
+                </select>
+                <VscDebugStart onClick={play} />
+              </div>
+
+              <input
+                className={styles.slider}
+                type="range"
+                onChange={(e) => changeVolume(e.target.value)}
+              />
+            </div>
+          ) : null}
         </div>
 
-        <div className={styles.menuSettings}>
+        {/* <div className={styles.menuSettings}>
           <select
             name="backgroundImg"
             id=""
@@ -113,21 +227,35 @@ export default function Menu({ close, changeBackground }) {
               alt={smallImg[1]}
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className={styles.menuSettings}>
-          <select name="sounds" id="">
-            <option value="dingding">Ding Ding</option>
-            <option value="jingle1">Jingle 1</option>
-            <option value="jingle2">Jingle 2</option>
-            <option value="jingle3">Jingle 3</option>
+        {/* <div className={styles.menuSettings}>
+          <select
+            name="sounds"
+            id=""
+            onChange={(e) => setJingle(e.target.value)}
+          >
+            {sounds.map((item) => {
+              return (
+                <option key={item.url} value={item.url}>
+                  {item.name}
+                </option>
+              );
+            })}
           </select>
 
           <button onClick={play}>Test</button>
           <input type="range" onChange={(e) => changeVolume(e.target.value)} />
-        </div>
+        </div> */}
 
-        <button onClick={close}>Close</button>
+        <div className={styles.menuButtons}>
+          <button onClick={close} className={styles.close}>
+            close
+          </button>
+          <button onClick={save} className={styles.save}>
+            save
+          </button>
+        </div>
       </div>
     </>
   );

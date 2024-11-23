@@ -15,7 +15,16 @@ export default function Timer({ changeBackground }) {
   const [shortBreak, setShortBreak] = useState(0.04);
   const [longBreak, setLongBreak] = useState(0.08);
   const [count, setCount] = useState(0);
+  const [version, setVersion] = useState(0);
 
+  // update functino to force a state change for some components
+  const forceUpdate = () => {
+    setVersion((prev) => prev + 1);
+
+    console.log(version);
+  };
+
+  // checks count to reset or increase the change in state for pomo interval
   const checkTime = () => {
     if (count >= pomodoroInterval.length - 1) {
       setCount(0);
@@ -23,6 +32,7 @@ export default function Timer({ changeBackground }) {
       setCount(count + 1);
     }
 
+    play();
     changePause();
     console.log("count increased");
     console.log(count);
@@ -32,10 +42,29 @@ export default function Timer({ changeBackground }) {
   const reset = () => {
     setCount(0);
 
-    setShortBreak(shortBreak + 0.00001);
-    setLongBreak(longBreak + 0.00001);
+    // setShortBreak(shortBreak + 0.00001);
+    // setLongBreak(longBreak + 0.00001);
+
+    // trying to figure out how to reset the timers without changing the values
+    // testing to see if force update would work
+    console.log(shortBreak);
+    setShortBreak(shortBreak);
+    setLongBreak(longBreak);
+    forceUpdate();
   };
 
+  const setTimers = (pomo = 25, short = 5, long = 30) => {
+    // pomodoro timer stops working when changing time in setting
+    // need to fx
+
+    setTime(pomo);
+    setShortBreak(short);
+    setLongBreak(long);
+    forceUpdate();
+
+    console.log(count);
+    console.log(pomodoroInterval);
+  };
   const pomodoroInterval = [
     time,
     shortBreak,
@@ -51,30 +80,57 @@ export default function Timer({ changeBackground }) {
   const [shortActive, setShortActive] = useState(false);
   const [longActive, setLongActive] = useState(false);
 
-  const changePomo = () => {
-    setShortActive(false);
-    setPomoActive(true);
-    setLongActive(false);
+  // const changePomo = () => {
+  //   setShortActive(false);
+  //   setPomoActive(true);
+  //   setLongActive(false);
 
+  //   setActive(true);
+  // };
+
+  // const changeShort = () => {
+  //   setShortActive(true);
+  //   setPomoActive(false);
+  //   setLongActive(false);
+
+  //   setActive(true);
+  // };
+  // const changeLong = () => {
+  //   setShortActive(false);
+  //   setPomoActive(false);
+  //   setLongActive(true);
+
+  //   setActive(true);
+  // };
+
+  const changeActive = (type) => {
+    setShortActive(type === "short");
+    setPomoActive(type === "pomo");
+    setLongActive(type === "long");
     setActive(true);
   };
 
-  const changeShort = () => {
-    setShortActive(true);
-    setPomoActive(false);
-    setLongActive(false);
+  const [jingle, setJingle] = useState("dingding.mp3");
 
-    setActive(true);
+  const sound = new Audio(`../public/assets/sounds/${jingle}`);
+
+  const [volume, setVolume] = useState(sound.volume);
+
+  sound.volume = volume;
+
+  const play = () => {
+    sound.play();
   };
-  const changeLong = () => {
-    setShortActive(false);
-    setPomoActive(false);
-    setLongActive(true);
 
-    setActive(true);
+  const changeVolume = (e) => {
+    console.log(e);
+    const intSound = parseInt(e);
+
+    setVolume(intSound / 100);
   };
 
   const [active, setActive] = useState(true);
+
   const changePause = () => {
     setActive(!active);
   };
@@ -87,9 +143,9 @@ export default function Timer({ changeBackground }) {
   return (
     <div className={styles.timerSection}>
       <div className={styles.timerOptions}>
-        <Button text={"pomodoro"} func={changePomo} />
-        <Button text={"short break"} func={changeShort} />
-        <Button text={"long break"} func={changeLong} />
+        <Button text={"pomodoro"} func={() => changeActive("pomo")} />
+        <Button text={"short break"} func={() => changeActive("short")} />
+        <Button text={"long break"} func={() => changeActive("long")} />
       </div>
       <div className={styles.timerMain}>
         {/* <h2>25:00</h2> */}
@@ -105,6 +161,7 @@ export default function Timer({ changeBackground }) {
 
         {shortActive ? (
           <CountdownTimer
+            key={version}
             time={shortBreak * 60}
             pause={active}
             checkTime={checkTime}
@@ -112,6 +169,7 @@ export default function Timer({ changeBackground }) {
         ) : null}
         {longActive ? (
           <CountdownTimer
+            key={version}
             time={longBreak * 60}
             pause={active}
             checkTime={checkTime}
@@ -121,7 +179,14 @@ export default function Timer({ changeBackground }) {
         <SlOptions onClick={toggleMenu} />
         {showMenu &&
           createPortal(
-            <Menu close={toggleMenu} changeBackground={changeBackground} />,
+            <Menu
+              close={toggleMenu}
+              changeBackground={changeBackground}
+              setTimers={setTimers}
+              play={play}
+              changeVolume={changeVolume}
+              setJingle={setJingle}
+            />,
             document.body
           )}
       </div>

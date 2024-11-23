@@ -15,15 +15,18 @@ export default function CountdownTimer({ time, pause, checkTime }) {
     if (pause || timeLeft <= 0) return;
     intervalRef.current = setInterval(() => {
       setTimeLeft((prevTime) => {
-        if (prevTime < 1) {
+        if (prevTime <= 1) {
           clearInterval(intervalRef.current);
           // perform action when time stop
+
+          console.log("i should be running");
           setTimeout(() => {
             console.log("timeout");
             checkTime(); // Trigger the checkTime function from the parent
-          }, 0);
+          }, 1000);
           return 0;
         } else {
+          console.log(`counting down ${prevTime - 1}`);
           return prevTime - 1;
         }
       });
@@ -39,7 +42,7 @@ export default function CountdownTimer({ time, pause, checkTime }) {
     <>
       <h2>
         {hours > 0 ? hours + ":" : null}
-        {minutes}:
+        {minutes < 10 ? "0" + minutes : minutes}:
         {seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds}
       </h2>
     </>
