@@ -48,6 +48,7 @@ export default function Timer({ changeBackground }) {
     // trying to figure out how to reset the timers without changing the values
     // testing to see if force update would work
     console.log(shortBreak);
+    setTime(time);
     setShortBreak(shortBreak);
     setLongBreak(longBreak);
     forceUpdate();
@@ -80,29 +81,7 @@ export default function Timer({ changeBackground }) {
   const [shortActive, setShortActive] = useState(false);
   const [longActive, setLongActive] = useState(false);
 
-  // const changePomo = () => {
-  //   setShortActive(false);
-  //   setPomoActive(true);
-  //   setLongActive(false);
-
-  //   setActive(true);
-  // };
-
-  // const changeShort = () => {
-  //   setShortActive(true);
-  //   setPomoActive(false);
-  //   setLongActive(false);
-
-  //   setActive(true);
-  // };
-  // const changeLong = () => {
-  //   setShortActive(false);
-  //   setPomoActive(false);
-  //   setLongActive(true);
-
-  //   setActive(true);
-  // };
-
+  // sets active countdown
   const changeActive = (type) => {
     setShortActive(type === "short");
     setPomoActive(type === "pomo");
@@ -129,6 +108,7 @@ export default function Timer({ changeBackground }) {
     setVolume(intSound / 100);
   };
 
+  // sets pause/play button active
   const [active, setActive] = useState(true);
 
   const changePause = () => {

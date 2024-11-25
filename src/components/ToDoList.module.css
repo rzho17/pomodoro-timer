@@ -47,3 +47,19 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.toDoHeading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toDoHeading h3 {
+  font-size: 2rem;
+}
+
+.toDoHeading svg {
+  width: 2.5rem;
+  height: auto;
+}
