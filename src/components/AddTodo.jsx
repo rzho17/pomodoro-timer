@@ -1,21 +1,34 @@
 import styles from "./AddTodo.module.css";
 import Button from "./Button";
-export default function AddTodo({ close }) {
+export default function AddTodo({ close, setTask, cancelTask, saveTask }) {
+  const save = () => {
+    close();
+    saveTask();
+  };
+  const cancel = () => {
+    close();
+    cancelTask();
+  };
   return (
     <>
       <div className={styles.menuOverlay} onClick={close}></div>
       <div className={styles.menuContent}>
-        <label htmlFor="todoItem">Enter a Todo</label>
+        <label htmlFor="task">Enter a Todo</label>
         <textarea
-          name="todoItem"
-          id="todoItem"
+          name="task"
+          id="task"
           //   placeholder="add a task"
           placeholder="task"
+          onChange={(e) => setTask(e)}
         ></textarea>
 
         <div className={styles.buttonContainer}>
-          <button className={styles.close}>cancel</button>
-          <button className={styles.save}>add task</button>
+          <button className={styles.close} onClick={cancel}>
+            cancel
+          </button>
+          <button className={styles.save} onClick={save}>
+            add task
+          </button>
         </div>
       </div>
     </>
