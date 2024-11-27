@@ -64,6 +64,8 @@ export default function ToDoList() {
     console.log(todoList);
   };
 
+  // need to figure out why the save task in edit
+  // reverts back to the previous task that was inside of it
   const saveTask = () => {
     setOldTodoList(todoList);
   };
@@ -81,22 +83,31 @@ export default function ToDoList() {
     // });
   };
 
-  const editTodo = (e, todo) => {
+  // create edit to do
+  // compares ids, if an id is found update the task with the new values
+  // else just return the item
+  const editTask = (e, todoId) => {
     const { name, value } = e.target;
 
-    console.log(todo);
-    // setTodoList((prev) => {
-    //   return prev.map((item) => {
-    //     if (item.id === todo.id) {
-    //       return { ...item, [name]: value };
-    //     }
-    //     return item;
-    //   });
-    // });
+    setTodoList((prev) => {
+      return prev.map((item) => {
+        if (item.id === todoId) {
+          return { ...item, [name]: value };
+        }
+        return item;
+      });
+    });
   };
 
-  // create edit to do
-  // selects current index and changes content state of it
+  // create function to delete the task
+
+  const deleteTask = (todoId) => {
+    setTodoList((prev) => {
+      return prev.filter((item) => {
+        return item.id !== todoId;
+      });
+    });
+  };
 
   return (
     <div className={styles.toDoContainer}>
@@ -121,9 +132,10 @@ export default function ToDoList() {
               key={todo.id}
               id={todo.id}
               text={todo.task}
-              editTodo={editTodo}
+              editTask={editTask}
               cancelTask={cancelTask}
               saveTask={saveTask}
+              deleteTask={deleteTask}
             />
           );
         })}

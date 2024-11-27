@@ -5,25 +5,22 @@ import { createPortal } from "react-dom";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin2Line } from "react-icons/ri";
 
-export default function ToDoItem({ id, text, editTodo, cancelTask, saveTask }) {
+export default function ToDoItem({
+  id,
+  text,
+  editTask,
+  cancelTask,
+  saveTask,
+  deleteTask,
+}) {
   const [showEdit, setShowEdit] = useState(false);
 
   const toggleEdit = () => {
     setShowEdit(!showEdit);
   };
 
-  const save = () => {
-    toggleEdit();
-    saveTask();
-  };
-
-  const cancel = () => {
-    toggleEdit();
-    cancelTask();
-  };
-
   const newEdit = (e) => {
-    editTodo(e, id);
+    editTask(e, id);
   };
 
   return (
@@ -41,7 +38,7 @@ export default function ToDoItem({ id, text, editTodo, cancelTask, saveTask }) {
             />,
             document.body
           )}
-        <RiDeleteBin2Line />
+        <RiDeleteBin2Line onClick={() => deleteTask(id)} />
       </div>
     </div>
   );

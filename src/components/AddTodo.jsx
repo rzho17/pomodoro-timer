@@ -11,7 +11,7 @@ export default function AddTodo({ close, setTask, cancelTask, saveTask }) {
   };
   return (
     <>
-      <div className={styles.menuOverlay} onClick={close}></div>
+      <div className={styles.menuOverlay} onClick={cancel}></div>
       <div className={styles.menuContent}>
         <label htmlFor="task">Enter a Todo</label>
         <textarea
