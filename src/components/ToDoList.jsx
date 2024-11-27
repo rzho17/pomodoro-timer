@@ -1,7 +1,7 @@
 import styles from "./ToDoList.module.css";
 import ToDoItem from "./ToDoItem";
 import AddTodo from "./AddTodo";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { nanoid } from "nanoid";
 import { createPortal } from "react-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
@@ -14,17 +14,24 @@ export default function ToDoList() {
   };
 
   // create to do list array
-  const [todoList, setTodoList] = useState([
-    {
-      id: nanoid(),
-      task: "Create something new",
-    },
-    {
-      id: nanoid(),
-      task: "Study for exam",
-    },
-  ]);
+  const storeList = JSON.parse(localStorage.getItem("todoList"));
+
+  const [todoList, setTodoList] = useState(storeList);
+  // const [todoList, setTodoList] = useState([
+  //   {
+  //     id: nanoid(),
+  //     task: "Create something new",
+  //   },
+  //   {
+  //     id: nanoid(),
+  //     task: "Study for exam",
+  //   },
+  // ]);
   const [oldTodoList, setOldTodoList] = useState(todoList);
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   // create state to edit based on change
 
@@ -66,6 +73,8 @@ export default function ToDoList() {
 
   // need to figure out why the save task in edit
   // reverts back to the previous task that was inside of it
+
+  // found that i was sending the wrong function to the close argument of addtodo
   const saveTask = () => {
     setOldTodoList(todoList);
   };
