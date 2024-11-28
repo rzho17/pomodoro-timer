@@ -16,29 +16,6 @@ export default function CountdownTimer({
     setTimeLeft(time); // Reset timeLeft when time prop changes
   }, [time]);
 
-  // useEffect(() => {
-  //   const timerDuration = time * 60;
-  //   let remainingTime = timerDuration;
-  //   // const currentTime = (time / timerDuration) * 100;
-  //   // console.log(time);
-  //   console.log(timerDuration);
-  //   console.log(remainingTime);
-
-  //   // setProgress(currentTime);
-
-  //   const countDown = setInterval(() => {
-  //     remainingTime -= 1;
-  //     setProgress((remainingTime / timerDuration) * 100);
-
-  //     if (remainingTime <= 0) {
-  //       clearInterval(countDown);
-  //     }
-  //   });
-
-  //   return () => clearInterval(countDown); // Cleanup on unmount
-  //   // console.log(`progres is ${progress}`);
-  // }, [time]);
-
   useEffect(() => {
     if (pause || timeLeft <= 0) return;
     intervalRef.current = setInterval(() => {
@@ -48,14 +25,20 @@ export default function CountdownTimer({
           // perform action when time stop
 
           console.log("i should be running");
+
+          // prevents timer component from getting a re render immediately after component is called
+          setTimeout(() => setProgress(0), 0);
           setTimeout(() => {
             console.log("timeout");
             checkTime(); // Trigger the checkTime function from the parent
-          }, 1000);
+          }, 1700);
           return 0;
         } else {
-          console.log(`counting down ${prevTime - 1}`);
-          setProgress(((prevTime - 1) / time) * 100);
+          const currenTime = prevTime - 1;
+          console.log(`counting down ${currenTime}`);
+
+          // prevents timer component from getting a re render immediately after component is called
+          setTimeout(() => setProgress((currenTime / time) * 100), 0);
           console.log(time);
           console.log(prevTime - 1);
           return prevTime - 1;

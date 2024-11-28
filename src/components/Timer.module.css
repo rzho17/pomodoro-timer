@@ -40,25 +40,26 @@
   height: auto;
 }
 
-.timerBar,
-.timerFill {
+.timerBar {
   height: 1rem;
   width: 100%;
-  border: 1px solid var(--primary-color);
-  border-radius: 10px;
+  border: 3px solid var(--primary-color);
+  border-radius: 5px;
   background-color: transparent;
-
   position: relative;
   /* transform: translateX(0%); */
   /* background-color: var(--primary-color); */
 }
 
-/* .timerFill {
-  border: none;
-  border-radius: 5px;
-  background-color: white;
-  transform: translateX(-50%);
-} */
+.timerFill {
+  height: 1rem;
+  width: 100%;
+  border-radius: 6px;
+  position: absolute;
+  top: -3px;
+  /* top: 1rem; */
+  box-sizing: border-box;
+}
 
 .timerControls {
   display: flex;
@@ -81,4 +82,9 @@
   border-radius: 20px;
   border: 1px solid var(--primary-color);
   padding: 0.5rem 2.5rem;
+}
+
+.timerOptions .active {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
