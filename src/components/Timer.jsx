@@ -7,15 +7,40 @@ import { SlOptions } from "react-icons/sl";
 import { MdOutlineRestartAlt } from "react-icons/md";
 import { VscDebugStart } from "react-icons/vsc";
 import { SlControlPause } from "react-icons/sl";
-import { act, useEffect, useState, useTransition } from "react";
+import { useRef, useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 
 export default function Timer({ changeBackground }) {
-  const [time, setTime] = useState(0.02);
+  // const [time, setTime] = useState(0.02);
+  const [time, setTime] = useState(0.1);
   const [shortBreak, setShortBreak] = useState(0.04);
   const [longBreak, setLongBreak] = useState(0.08);
   const [count, setCount] = useState(0);
   const [version, setVersion] = useState(0);
+  const [progress, setProgress] = useState(100);
+
+  // useEffect(() => {
+  //   const timerDuration = time * 60;
+  //   let remainingTime = timerDuration;
+  //   // const currentTime = (time / timerDuration) * 100;
+  //   // console.log(time);
+  //   console.log(timerDuration);
+  //   console.log(remainingTime);
+
+  //   // setProgress(currentTime);
+
+  //   const countDown = setInterval(() => {
+  //     remainingTime -= 1;
+  //     setProgress((remainingTime / timerDuration) * 100);
+
+  //     if (remainingTime <= 0) {
+  //       clearInterval(countDown);
+  //     }
+  //   });
+
+  //   return () => clearInterval(countDown); // Cleanup on unmount
+  //   // console.log(`progres is ${progress}`);
+  // }, []);
 
   // update functino to force a state change for some components
   const forceUpdate = () => {
@@ -32,6 +57,7 @@ export default function Timer({ changeBackground }) {
       setCount(count + 1);
     }
 
+    // setProgress(100);
     play();
     changePause();
     console.log("count increased");
@@ -136,6 +162,7 @@ export default function Timer({ changeBackground }) {
             time={pomodoroInterval[count] * 60}
             pause={active}
             checkTime={checkTime}
+            setProgress={setProgress}
           />
         ) : null}
 
@@ -170,7 +197,16 @@ export default function Timer({ changeBackground }) {
             document.body
           )}
       </div>
-      <div className={styles.timerBar}></div>
+      <div className={styles.timerBar}>
+        <div
+          className={styles.timerFill}
+          style={{
+            width: `${progress}%`,
+            backgroundColor: progress > 0 ? "tomato" : "transparent",
+            transition: "width 1s linear, background-color 0.5s ease",
+          }}
+        ></div>
+      </div>
       <div className={styles.timerControls}>
         {active ? (
           <VscDebugStart onClick={changePause} />

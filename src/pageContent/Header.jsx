@@ -1,3 +1,10 @@
+import styles from "./Header.module.css";
+
 export default function Header() {
-  return <h1>I am the header</h1>;
+  return (
+    <header className={styles.header}>
+      <h1>Calmodoro</h1>
+      <p>Chill your way to focus.</p>
+    </header>
+  );
 }

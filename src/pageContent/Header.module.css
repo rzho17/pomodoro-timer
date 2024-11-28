@@ -1,0 +1,19 @@
+h1 {
+  font-family: "Funnel Display", sans-serif;
+
+  font-size: clamp(2.5rem, 3.5rem, 7rem);
+
+  margin: 1rem;
+
+  /* margin-bottom: 0; */
+
+  position: relative;
+}
+
+.header p {
+  font-size: 0.8rem;
+  margin: 0;
+  position: absolute;
+  right: 3rem;
+  top: 5rem;
+}

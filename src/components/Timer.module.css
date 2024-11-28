@@ -40,14 +40,25 @@
   height: auto;
 }
 
-.timerBar {
+.timerBar,
+.timerFill {
   height: 1rem;
   width: 100%;
   border: 1px solid var(--primary-color);
   border-radius: 10px;
   background-color: transparent;
+
+  position: relative;
+  /* transform: translateX(0%); */
   /* background-color: var(--primary-color); */
 }
+
+/* .timerFill {
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  transform: translateX(-50%);
+} */
 
 .timerControls {
   display: flex;

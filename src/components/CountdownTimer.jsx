@@ -1,15 +1,43 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function CountdownTimer({ time, pause, checkTime }) {
-  const intialTime = time;
+export default function CountdownTimer({
+  time,
+  pause,
+  checkTime,
+  setProgress,
+}) {
+  const initialTime = time;
 
-  const [timeLeft, setTimeLeft] = useState(intialTime);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
 
   const intervalRef = useRef(null);
 
   useEffect(() => {
     setTimeLeft(time); // Reset timeLeft when time prop changes
   }, [time]);
+
+  // useEffect(() => {
+  //   const timerDuration = time * 60;
+  //   let remainingTime = timerDuration;
+  //   // const currentTime = (time / timerDuration) * 100;
+  //   // console.log(time);
+  //   console.log(timerDuration);
+  //   console.log(remainingTime);
+
+  //   // setProgress(currentTime);
+
+  //   const countDown = setInterval(() => {
+  //     remainingTime -= 1;
+  //     setProgress((remainingTime / timerDuration) * 100);
+
+  //     if (remainingTime <= 0) {
+  //       clearInterval(countDown);
+  //     }
+  //   });
+
+  //   return () => clearInterval(countDown); // Cleanup on unmount
+  //   // console.log(`progres is ${progress}`);
+  // }, [time]);
 
   useEffect(() => {
     if (pause || timeLeft <= 0) return;
@@ -27,6 +55,9 @@ export default function CountdownTimer({ time, pause, checkTime }) {
           return 0;
         } else {
           console.log(`counting down ${prevTime - 1}`);
+          setProgress(((prevTime - 1) / time) * 100);
+          console.log(time);
+          console.log(prevTime - 1);
           return prevTime - 1;
         }
       });
