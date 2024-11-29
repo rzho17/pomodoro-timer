@@ -12,7 +12,7 @@ import { createPortal } from "react-dom";
 
 export default function Timer({ changeBackground }) {
   // const [time, setTime] = useState(0.02);
-  const [time, setTime] = useState(0.1);
+  const [time, setTime] = useState(0.17);
   const [shortBreak, setShortBreak] = useState(0.04);
   const [longBreak, setLongBreak] = useState(0.08);
   const [count, setCount] = useState(0);
@@ -87,6 +87,7 @@ export default function Timer({ changeBackground }) {
 
   // sets active countdown
   const changeActive = (type) => {
+    setProgress(100);
     setShortActive(type === "short");
     setPomoActive(type === "pomo");
     setLongActive(type === "long");
@@ -194,7 +195,7 @@ export default function Timer({ changeBackground }) {
           className={styles.timerFill}
           style={{
             width: `${Math.round(progress)}%`,
-            backgroundColor: progress > 0 ? "white" : "transparent",
+            backgroundColor: progress > 0 ? "#f8f9fa" : "transparent",
             transition: "width 1s linear, background-color 0.5s ease",
           }}
         ></div>

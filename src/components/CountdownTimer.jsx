@@ -38,7 +38,7 @@ export default function CountdownTimer({
           console.log(`counting down ${currenTime}`);
 
           // prevents timer component from getting a re render immediately after component is called
-          setTimeout(() => setProgress((currenTime / time) * 100), 0);
+          setTimeout(() => setProgress((currenTime / time) * 100.0), 0);
           console.log(time);
           console.log(prevTime - 1);
           return prevTime - 1;

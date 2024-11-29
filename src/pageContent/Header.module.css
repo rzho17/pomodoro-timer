@@ -7,13 +7,17 @@ h1 {
 
   /* margin-bottom: 0; */
 
-  position: relative;
+  /* position: relative; */
 }
 
+.headerContent {
+  width: 350px;
+  position: relative;
+}
 .header p {
   font-size: 0.8rem;
   margin: 0;
   position: absolute;
-  right: 3rem;
-  top: 5rem;
+  right: 1rem;
+  top: 4rem;
 }

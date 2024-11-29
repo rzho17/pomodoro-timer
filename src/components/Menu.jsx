@@ -116,9 +116,24 @@ export default function Menu({
       <div className={styles.menuOverlay} onClick={close}></div>
       <div className={styles.menuContent}>
         <div className={styles.menuOptions}>
-          <h3 onClick={() => changeActive("timer")}>timers</h3>
-          <h3 onClick={() => changeActive("themes")}>themes</h3>
-          <h3 onClick={() => changeActive("sounds")}>sounds</h3>
+          <h3
+            onClick={() => changeActive("timer")}
+            className={showTimers ? `${styles.active}` : ""}
+          >
+            timers
+          </h3>
+          <h3
+            onClick={() => changeActive("themes")}
+            className={showThemes ? `${styles.active}` : ""}
+          >
+            themes
+          </h3>
+          <h3
+            onClick={() => changeActive("sounds")}
+            className={showSounds ? `${styles.active}` : ""}
+          >
+            sounds
+          </h3>
         </div>
 
         <div className={styles.menuSettings}>
