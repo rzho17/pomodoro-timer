@@ -96,3 +96,19 @@
   width: 2.5rem;
   height: auto;
 }
+
+.toDoHeading svg:hover {
+  cursor: pointer;
+  width: 3rem;
+  transition: 0.1s ease-in;
+}
+
+.toDoEntry svg:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .toDoItems {
+    max-height: 350px;
+  }
+}

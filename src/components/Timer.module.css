@@ -112,11 +112,14 @@
 }
 
 .timerControls svg:nth-child(2):hover {
-  transition: 0.8s ease-in-out;
+  transition: 0.8s ease-out;
   transform: rotate(-360deg);
 }
 
 @media screen and (min-width: 768px) {
+  .timerSection {
+    align-self: center;
+  }
   .timerMain {
     justify-content: space-around;
   }

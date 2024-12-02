@@ -1,5 +1,7 @@
 footer {
   display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
   margin: 1rem;
@@ -19,4 +21,19 @@ footer {
 h2 {
   font-family: "Funnel Display", sans-serif;
   font-size: 1.8rem;
+}
+
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    flex-direction: row;
+    gap: 1rem;
+  }
 }
