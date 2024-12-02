@@ -6,7 +6,7 @@ import CountdownTimer from "./CountdownTimer";
 import { SlOptions } from "react-icons/sl";
 import { MdOutlineRestartAlt } from "react-icons/md";
 import { VscDebugStart } from "react-icons/vsc";
-import { SlControlPause } from "react-icons/sl";
+import { LuPause } from "react-icons/lu";
 import { useRef, useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 
@@ -204,7 +204,7 @@ export default function Timer({ changeBackground }) {
         {active ? (
           <VscDebugStart onClick={changePause} />
         ) : (
-          <SlControlPause onClick={changePause} />
+          <LuPause onClick={changePause} />
         )}
 
         <MdOutlineRestartAlt onClick={reset} />
