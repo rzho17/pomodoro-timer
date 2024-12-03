@@ -24,23 +24,18 @@ export default function CountdownTimer({
           clearInterval(intervalRef.current);
           // perform action when time stop
 
-          console.log("i should be running");
-
           // prevents timer component from getting a re render immediately after component is called
           setTimeout(() => setProgress(0), 0);
           setTimeout(() => {
-            console.log("timeout");
             checkTime(); // Trigger the checkTime function from the parent
           }, 1700);
           return 0;
         } else {
           const currenTime = prevTime - 1;
-          console.log(`counting down ${currenTime}`);
 
           // prevents timer component from getting a re render immediately after component is called
           setTimeout(() => setProgress((currenTime / time) * 100.0), 0);
-          console.log(time);
-          console.log(prevTime - 1);
+
           return prevTime - 1;
         }
       });

@@ -54,8 +54,6 @@ export default function ToDoList() {
 
       return newTodoList;
     });
-
-    console.log(todoList);
   };
 
   const saveTask = () => {
@@ -65,9 +63,6 @@ export default function ToDoList() {
   // cancels and removes the current added task
   const cancelTask = () => {
     setTodoList(oldTodoList);
-
-    console.log(todoList);
-    console.log(oldTodoList);
   };
 
   // create edit to do

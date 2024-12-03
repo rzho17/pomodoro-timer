@@ -11,10 +11,9 @@ import { useRef, useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 
 export default function Timer({ changeBackground }) {
-  const [time, setTime] = useState(0.02);
-  // const [time, setTime] = useState(0.17);
-  const [shortBreak, setShortBreak] = useState(0.04);
-  const [longBreak, setLongBreak] = useState(0.08);
+  const [time, setTime] = useState(25);
+  const [shortBreak, setShortBreak] = useState(5);
+  const [longBreak, setLongBreak] = useState(20);
   const [count, setCount] = useState(0);
   const [version, setVersion] = useState(0);
   const [progress, setProgress] = useState(100);
@@ -22,8 +21,6 @@ export default function Timer({ changeBackground }) {
   // update function to force a state change for some components
   const forceUpdate = () => {
     setVersion((prev) => prev + 1);
-
-    console.log(version);
   };
 
   // checks count to reset or increase the change in state for pomo interval
@@ -37,9 +34,6 @@ export default function Timer({ changeBackground }) {
     setProgress(100);
     play();
     changePause();
-    console.log("count increased");
-    console.log(count);
-    console.log(pomodoroInterval[count]);
   };
 
   // resets all values
@@ -47,12 +41,9 @@ export default function Timer({ changeBackground }) {
     setProgress(100);
     setCount(0);
 
-    // setShortBreak(shortBreak + 0.00001);
-    // setLongBreak(longBreak + 0.00001);
-
     // trying to figure out how to reset the timers without changing the values
     // testing to see if force update would work
-    console.log(shortBreak);
+
     setTime(time);
     setShortBreak(shortBreak);
     setLongBreak(longBreak);
@@ -67,9 +58,6 @@ export default function Timer({ changeBackground }) {
     setShortBreak(short);
     setLongBreak(long);
     forceUpdate();
-
-    console.log(count);
-    console.log(pomodoroInterval);
   };
   const pomodoroInterval = [
     time,
@@ -108,7 +96,6 @@ export default function Timer({ changeBackground }) {
   };
 
   const changeVolume = (e) => {
-    console.log(e);
     const intSound = parseInt(e);
 
     setVolume(intSound / 100);

@@ -88,8 +88,6 @@ export default function Menu({
     } else {
       timeObj[key] = Math.round(parseFloat(e));
     }
-
-    console.log(timeObj);
   };
 
   // default values for timer if no input
@@ -105,8 +103,6 @@ export default function Menu({
     const img = backgroundImages[selectedIndex];
     changeBackground(img.url);
     setSmallImg([img.url, img.description]);
-
-    console.log(img);
   };
 
   const save = () => {
