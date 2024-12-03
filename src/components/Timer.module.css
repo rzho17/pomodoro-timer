@@ -122,6 +122,7 @@
   }
   .timerMain {
     justify-content: space-around;
+    gap: 3rem;
   }
 
   .timerMain svg {

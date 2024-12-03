@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--root-background-image",
-      `url(../public/assets/cityscape.jpg)`
+      `url(../public/assets/gates.jpg)`
     );
   }, []);
 

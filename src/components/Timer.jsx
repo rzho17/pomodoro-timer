@@ -11,8 +11,8 @@ import { useRef, useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 
 export default function Timer({ changeBackground }) {
-  // const [time, setTime] = useState(0.02);
-  const [time, setTime] = useState(0.17);
+  const [time, setTime] = useState(0.02);
+  // const [time, setTime] = useState(0.17);
   const [shortBreak, setShortBreak] = useState(0.04);
   const [longBreak, setLongBreak] = useState(0.08);
   const [count, setCount] = useState(0);

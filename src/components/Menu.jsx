@@ -87,7 +87,11 @@ export default function Menu({
   };
 
   const test = (e, timeObj, key) => {
-    timeObj[key] = Math.round(parseFloat(e)); // Dynamically update the property
+    if (parseFloat(e) < 0) {
+      timeObj[key] = Math.round(parseFloat(e)) * -1;
+    } else {
+      timeObj[key] = Math.round(parseFloat(e)); // Dynamically update the property
+    }
 
     console.log(timeObj);
   };
