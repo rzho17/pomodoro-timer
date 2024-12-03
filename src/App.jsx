@@ -14,9 +14,9 @@ function App() {
   //   );
   // }, []);
 
-  const savedBackground = JSON.parse(
-    localStorage.getItem("background") || "gates"
-  );
+  const savedBackground = localStorage.getItem("background")
+    ? JSON.parse(localStorage.getItem("background"))
+    : "gates";
 
   // const [background, setBackground] = useState("gates");
   const [background, setBackground] = useState(savedBackground);
