@@ -14,7 +14,8 @@ export default function ToDoList() {
   };
 
   // creates and sets local storage state for todo items
-  const storeList = JSON.parse(localStorage.getItem("todoList"));
+  // const storeList = JSON.parse(localStorage.getItem("todoList"));
+  const storeList = JSON.parse(localStorage.getItem("todoList")) || [];
 
   const [todoList, setTodoList] = useState(storeList);
 
