@@ -7,7 +7,16 @@ import Footer from "./pageContent/Footer";
 import "./App.css";
 
 function App() {
-  const [background, setBackground] = useState("gates");
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--root-background-image",
+      `url(../public/assets/cityscape.jpg)`
+    );
+  }, []);
+
+  const savedBackground = JSON.parse(localStorage.getItem("background"));
+  // const [background, setBackground] = useState("gates");
+  const [background, setBackground] = useState(savedBackground);
 
   const changeBackground = (image) => setBackground(image);
 
@@ -16,6 +25,10 @@ function App() {
       "--root-background-image",
       `url(../public/assets/${background}.jpg)`
     );
+  }, [background]);
+
+  useEffect(() => {
+    localStorage.setItem("background", JSON.stringify(background));
   }, [background]);
 
   return (

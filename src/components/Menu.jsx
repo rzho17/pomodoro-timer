@@ -71,7 +71,7 @@ export default function Menu({
     },
   ];
 
-  const [smallImg, setSmallImg] = useState(["gates", ""]);
+  const [smallImg, setSmallImg] = useState(["", ""]);
   const [showTimers, setShowTimers] = useState(true);
   const [showThemes, setShowThemes] = useState(false);
   const [showSounds, setShowSounds] = useState(false);
@@ -104,6 +104,8 @@ export default function Menu({
     const img = backgroundImages[selectedIndex];
     changeBackground(img.url);
     setSmallImg([img.url, img.description]);
+
+    console.log(img);
   };
 
   const save = () => {
@@ -175,21 +177,27 @@ export default function Menu({
               <select
                 name="backgroundImg"
                 id=""
-                onChange={(e) => updateImg(e.target.selectedIndex)}
+                onChange={(e) => updateImg(e.target.selectedIndex - 1)}
+                defaultValue=""
               >
+                <option disabled value="">
+                  Select a background
+                </option>
                 {backgroundImages.map((item) => {
                   return (
-                    <option key={item.url} value={item}>
+                    <option key={item.url} value={item.url}>
                       {item.name}
                     </option>
                   );
                 })}
               </select>
               <div>
-                <img
-                  src={`../public/assets/${smallImg[0]}.jpg`}
-                  alt={smallImg[1]}
-                />
+                {smallImg != "" ? (
+                  <img
+                    src={`../public/assets/${smallImg[0]}.jpg`}
+                    alt={smallImg[1]}
+                  />
+                ) : null}
               </div>
             </div>
           ) : null}
