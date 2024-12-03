@@ -1,5 +1,5 @@
 import styles from "./AddTodo.module.css";
-import Button from "./Button";
+
 export default function AddTodo({ close, setTask, cancelTask, saveTask }) {
   const save = () => {
     close();
@@ -17,7 +17,6 @@ export default function AddTodo({ close, setTask, cancelTask, saveTask }) {
         <textarea
           name="task"
           id="task"
-          //   placeholder="add a task"
           placeholder="task"
           onChange={(e) => setTask(e)}
         ></textarea>

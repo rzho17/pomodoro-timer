@@ -42,6 +42,7 @@ export default function Timer({ changeBackground }) {
     console.log(pomodoroInterval[count]);
   };
 
+  // resets all values
   const reset = () => {
     setProgress(100);
     setCount(0);

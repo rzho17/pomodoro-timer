@@ -76,10 +76,6 @@ export default function Menu({
   const [showThemes, setShowThemes] = useState(false);
   const [showSounds, setShowSounds] = useState(false);
 
-  // const [pomoValue, setPomoValue] = useState(0);
-  // const [shortValue, setShortValue] = useState(0);
-  // const [longValue, setLongValue] = useState(0);
-
   const changeActive = (type) => {
     setShowTimers(type === "timer");
     setShowThemes(type === "themes");
@@ -90,19 +86,20 @@ export default function Menu({
     if (parseFloat(e) < 0) {
       timeObj[key] = Math.round(parseFloat(e)) * -1;
     } else {
-      timeObj[key] = Math.round(parseFloat(e)); // Dynamically update the property
+      timeObj[key] = Math.round(parseFloat(e));
     }
 
     console.log(timeObj);
   };
 
-  // Example usage:
+  // default values for timer if no input
   const timers = {
     pomoValue: 25,
     shortValue: 5,
     longValue: 30,
   };
 
+  // updates small image box
   const updateImg = (data) => {
     const selectedIndex = data;
     const img = backgroundImages[selectedIndex];
@@ -233,48 +230,6 @@ export default function Menu({
             </div>
           ) : null}
         </div>
-
-        {/* <div className={styles.menuSettings}>
-          <select
-            name="backgroundImg"
-            id=""
-            onChange={(e) => updateImg(e.target.selectedIndex)}
-          >
-            {backgroundImages.map((item) => {
-              return (
-                <option key={item.url} value={item}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-
-          <div>
-            <img
-              src={`../public/assets/${smallImg[0]}.jpg`}
-              alt={smallImg[1]}
-            />
-          </div>
-        </div> */}
-
-        {/* <div className={styles.menuSettings}>
-          <select
-            name="sounds"
-            id=""
-            onChange={(e) => setJingle(e.target.value)}
-          >
-            {sounds.map((item) => {
-              return (
-                <option key={item.url} value={item.url}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-
-          <button onClick={play}>Test</button>
-          <input type="range" onChange={(e) => changeVolume(e.target.value)} />
-        </div> */}
 
         <div className={styles.menuButtons}>
           <button onClick={close} className={styles.close}>

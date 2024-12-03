@@ -13,27 +13,16 @@ export default function ToDoList() {
     setshowTodo(!showTodo);
   };
 
-  // create to do list array
+  // creates and sets local storage state for todo items
   const storeList = JSON.parse(localStorage.getItem("todoList"));
 
   const [todoList, setTodoList] = useState(storeList);
-  // const [todoList, setTodoList] = useState([
-  //   {
-  //     id: nanoid(),
-  //     task: "Create something new",
-  //   },
-  //   {
-  //     id: nanoid(),
-  //     task: "Study for exam",
-  //   },
-  // ]);
+
   const [oldTodoList, setOldTodoList] = useState(todoList);
 
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
   }, [todoList]);
-
-  // create state to edit based on change
 
   // create add to do
   // adds a new todo item
@@ -53,8 +42,6 @@ export default function ToDoList() {
   };
 
   // sets and edits the state of the create todo
-  // something is making the array change
-  // instead of the last index being updated, it creteas a new to do item instead
   const setTask = (e) => {
     const currentIdx = todoList.length - 1;
     setTodoList((prev) => {
@@ -71,10 +58,6 @@ export default function ToDoList() {
     console.log(todoList);
   };
 
-  // need to figure out why the save task in edit
-  // reverts back to the previous task that was inside of it
-
-  // found that i was sending the wrong function to the close argument of addtodo
   const saveTask = () => {
     setOldTodoList(todoList);
   };
@@ -85,11 +68,6 @@ export default function ToDoList() {
 
     console.log(todoList);
     console.log(oldTodoList);
-    // setTodoList((prev) => {
-    //   const lastIdx = prev.length - 1;
-    //   const oldList = [...prev];
-    //   return oldList.splice(0, lastIdx);
-    // });
   };
 
   // create edit to do
@@ -108,8 +86,7 @@ export default function ToDoList() {
     });
   };
 
-  // create function to delete the task
-
+  // filters item out of list
   const deleteTask = (todoId) => {
     setTodoList((prev) => {
       return prev.filter((item) => {
@@ -148,22 +125,7 @@ export default function ToDoList() {
             />
           );
         })}
-        {/* <ToDoItem text={"Prepare to do list"} />
-        <ToDoItem text={"Prepare to do list"} />
-        <ToDoItem text={"Prepare to do list"} /> */}
       </div>
-
-      {/* <iframe
-        // style="border-radius:12px"
-        style={{ width: "100%", height: "152px", borderRadius: "12px" }}
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8Uebhn9wzrS?utm_source=generator"
-        // width="100%"
-        // height="152"
-        frameBorder="0"
-        // allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-      ></iframe> */}
     </div>
   );
 }
