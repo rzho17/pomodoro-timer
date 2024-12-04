@@ -15,7 +15,7 @@ function App() {
   // }, []);
 
   const savedBackground =
-    localStorage.getItem("background") === null
+    localStorage.getItem("background") != null
       ? JSON.parse(localStorage.getItem("background"))
       : "gates";
 
