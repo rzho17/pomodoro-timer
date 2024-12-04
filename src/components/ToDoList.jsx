@@ -7,10 +7,10 @@ import { createPortal } from "react-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 export default function ToDoList() {
-  const [showTodo, setshowTodo] = useState(false);
+  const [showTodo, setShowTodo] = useState(false);
 
   const toggleTodo = () => {
-    setshowTodo(!showTodo);
+    setShowTodo(!showTodo);
   };
 
   // creates and sets local storage state for todo items

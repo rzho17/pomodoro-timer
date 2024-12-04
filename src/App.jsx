@@ -7,19 +7,11 @@ import Footer from "./pageContent/Footer";
 import "./App.css";
 
 function App() {
-  // useEffect(() => {
-  //   document.documentElement.style.setProperty(
-  //     "--root-background-image",
-  //     `url(../public/assets/gates.jpg)`
-  //   );
-  // }, []);
-
   const savedBackground =
     localStorage.getItem("background") != null
       ? JSON.parse(localStorage.getItem("background"))
       : "gates";
 
-  // const [background, setBackground] = useState("gates");
   const [background, setBackground] = useState(savedBackground);
 
   const changeBackground = (image) => setBackground(image);
