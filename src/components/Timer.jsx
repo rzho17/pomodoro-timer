@@ -7,7 +7,7 @@ import { SlOptions } from "react-icons/sl";
 import { MdOutlineRestartAlt } from "react-icons/md";
 import { VscDebugStart } from "react-icons/vsc";
 import { LuPause } from "react-icons/lu";
-import { useRef, useEffect, useState, useTransition } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 
 export default function Timer({ changeBackground }) {

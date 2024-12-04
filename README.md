@@ -1,8 +1,12 @@
-# React + Vite
+# Calmodoro - Your Chill Pomodoro Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Calmodoro](./public/assets/landingPage.png)
 
-Currently, two official plugins are available:
+#### Video Demo: <URL HERE>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### Description:
+
+This project was created for the online computer science course from Harvard: CS50. The project is made in React using plain javascript/html/css. The project contains a pomodoro timer which the user can customize with whichever time settings they want. There is also a simple to do list which the user can add tasks they need to keep track of. Calmodoro includes customization of its background to provide the chillest experience for its users and an embeded Spotify playlist for optional lofi tunes.
+
+- [Calmodoro Live](https://calmodoro.netlify.app/)
+- [Github/Repo](https://github.com/rzho17/pomodoro-timer)
