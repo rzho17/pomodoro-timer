@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--root-background-image",
-      `url(../public/assets/${background}.jpg)`
+      `url(../assets/${background}.jpg)`
     );
   }, [background]);
 
