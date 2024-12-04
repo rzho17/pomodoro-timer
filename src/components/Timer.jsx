@@ -85,7 +85,7 @@ export default function Timer({ changeBackground }) {
 
   const [jingle, setJingle] = useState("dingding.mp3");
 
-  const sound = new Audio(`../public/assets/sounds/${jingle}`);
+  const sound = new Audio(`../assets/sounds/${jingle}`);
 
   const [volume, setVolume] = useState(sound.volume);
 

@@ -190,10 +190,7 @@ export default function Menu({
               </select>
               <div>
                 {smallImg != "" ? (
-                  <img
-                    src={`../public/assets/${smallImg[0]}.jpg`}
-                    alt={smallImg[1]}
-                  />
+                  <img src={`../assets/${smallImg[0]}.jpg`} alt={smallImg[1]} />
                 ) : null}
               </div>
             </div>
