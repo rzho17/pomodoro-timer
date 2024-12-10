@@ -2,7 +2,7 @@
 
 ![Calmodoro](./public/assets/landingPage.png)
 
-#### Video Demo: <URL HERE>
+#### Video Demo: <[URL HERE](https://www.youtube.com/watch?v=KfwQ6ogalUk)>
 
 #### Description:
 
